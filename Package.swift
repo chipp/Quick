@@ -35,7 +35,9 @@ let package = Package(
         ]
 #if os(macOS)
         targets.append(contentsOf: [
-            .target(name: "QuickObjCRuntime", dependencies: []),
+            .target(name: "QuickObjCRuntime", dependencies: [], cxxSettings: [
+                .define("CLANG_ENABLE_MODULES", to: "YES")
+            ]),
             .target(name: "Quick", dependencies: [ "QuickObjCRuntime" ]),
         ])
 #else
